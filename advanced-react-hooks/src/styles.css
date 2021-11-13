@@ -7,3 +7,52 @@
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.app-container {
+	width: 100%;
+	max-width: 1080px;
+	margin: 0 auto;
+}
+
+.box-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin: 0;
+	padding: 16px;
+}
+
+input, button {
+	margin: 8px;
+	padding: 8px;
+}
+
+button {
+	cursor: pointer;
+}
+
+.user-view {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.user-view img {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	margin: 16px;
+	border: 1px solid #000;
+}
+
+.user-view strong {
+	font-weight: 500;
+	font-size: 1.6rem;
+}
+
+.user-view p {
+	font-weight: normal;
+	font-size: 1rem;
+}

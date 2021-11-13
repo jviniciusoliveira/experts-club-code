@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer } from "react";
 import { fetchGithubUser } from "../services/user";
 import { UserFallback } from "./UserFallback";
 import { UserView } from "./UserView";
@@ -80,7 +80,7 @@ export function UserInfo({ userName }: UserInfoProps) {
 			return <UserFallback userName={userName} />;
 
 		case REQUEST_STATUS.RESOLVED:
-			return <UserView user={user} />
+			return <UserView user={user} />;
 
 		case REQUEST_STATUS.REJECTED:
 			return <p>{error}</p>;

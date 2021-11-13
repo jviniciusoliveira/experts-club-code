@@ -1,13 +1,12 @@
 import { UserInfo } from "./UserInfo";
 
 interface UserSectionProps {
-	onSelect: (userName: string) => void;
 	userName: string;
 }
 
-export function UserSection({ onSelect, userName }: UserSectionProps) {
+export function UserSection({ userName }: UserSectionProps) {
 	return (
-		<div>
+		<div className="box-container">
 			<UserInfo userName={userName} />
 		</div>
 	)

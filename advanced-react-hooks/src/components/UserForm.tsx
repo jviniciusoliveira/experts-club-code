@@ -1,16 +1,4 @@
-import { ReactNode, useEffect, useState, FormEvent } from "react";
-
-interface HeaderProps {
-	children: ReactNode
-}
-
-function Header({ children }: HeaderProps) {
-	return (
-		<nav className="container">
-			<div>{children}</div>
-		</nav>
-	)
-}
+import { useEffect, useState, FormEvent } from "react";
 
 interface UserFormProps {
 	userName: string;
@@ -37,7 +25,7 @@ export function UserForm({ userName: externalUserName, initialUserName = externa
 	}
 
 	return (
-		<Header>
+		<nav className="box-container">
 			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
@@ -53,6 +41,6 @@ export function UserForm({ userName: externalUserName, initialUserName = externa
 					Search
 				</button>
 			</form>
-		</Header>
+		</nav>
 	)
 }
