@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { REQUEST_STATUS, useRequestState } from "../hooks/useRequestState";
-import { fetchGithubUser } from "../services/user";
+import { useFetch, requestStatus } from '../hooks/useFetch';
 import { UserFallback } from "./UserFallback";
 import { UserView } from "./UserView";
 
@@ -8,27 +6,26 @@ interface UserInfoProps {
 	userName: string;
 }
 
-export function UserInfo({ userName }: UserInfoProps) {
-	const { data: user, error, status, run } = useRequestState({
-		status: userName ? REQUEST_STATUS.PENDING : REQUEST_STATUS.IDLE
-	});
+type GithubUser = {
+	name: string;
+	bio: string;
+	avatar_url: string;
+}
 
-	useEffect(() => {
-		if (!userName) return;
-		return run(fetchGithubUser(userName));
-	}, [userName, run]);
+export function UserInfo({ userName }: UserInfoProps) {
+	const { status, data: user, error } = useFetch<GithubUser>(`https://api.github.com/users/${userName}`)
 
 	switch (status) {
-		case REQUEST_STATUS.IDLE:
+		case requestStatus.init:
 			return <p>submit user</p>;
 
-		case REQUEST_STATUS.PENDING:
+		case requestStatus.fetching:
 			return <UserFallback userName={userName} />;
 
-		case REQUEST_STATUS.RESOLVED:
+		case requestStatus.fetched:
 			return <UserView user={user} />;
 
-		case REQUEST_STATUS.REJECTED:
+		case requestStatus.error:
 			return <p>{error}</p>;
 
 		default:
